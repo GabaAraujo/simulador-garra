@@ -1,0 +1,49 @@
+Início: 2026-10-03 18:29:40
+Comando enviado: pega a banana
+
+## 0. Câmera
+Tipo da cor: matriz de inteiros, forma (512, 512, 3) (altura, largura, canais).
+Tipo da profundidade: posição 3D de cada pixel, em milímetros, no sistema da câmera.
+A pose interna dos objetos não é lida para mover a garra.
+## 1. Mensagem enviada ao Gemma
+Papel: entender a frase e escolher o nome do objeto.
+Entrada imagem: foto RGB da câmera, 512 x 512 pixels, 3 canais de cor.
+Entrada texto:
+Na mesa há um cubo vermelho, uma banana amarela e uma lata azul. O pedido é: pega a banana. Responda com uma única palavra, entre estas: cubo, banana, lata.
+Saída esperada: uma palavra entre cubo, banana e lata.
+## 2. O que o Gemma devolveu
+Tipo do dado: texto.
+Texto completo:
+user
+
+
+
+
+Na mesa há um cubo vermelho, uma banana amarela e uma lata azul. O pedido é: pega a banana. Responda com uma única palavra, entre estas: cubo, banana, lata.
+model
+banana
+Trecho usado na interpretação (depois de 'model'): banana
+Interpretação: procura no trecho o apelido mais longo do catálogo (cubo, banana, lata) e fica com esse nome.
+Nome escolhido: banana
+## 3. Mensagem enviada ao Florence
+Papel: achar o objeto na foto e devolver uma caixa.
+Entrada imagem: a mesma foto, 512 x 512 pixels.
+Entrada texto: <OPEN_VOCABULARY_DETECTION>banana
+Saída esperada: texto com marcas <loc_...> que viram cantos da caixa, em pixels.
+## 4. O que o Florence devolveu
+Tipo do dado: texto com localizações, convertido em lista de caixas.
+Texto bruto: </s><s>banana<loc_431><loc_519><loc_570><loc_568></s>
+Caixas encontradas (1): [[220, 265, 292, 291]]
+Interpretação: cada caixa é [x1, y1, x2, y2], o canto superior esquerdo e o inferior direito, em pixels. Fica a maior.
+Caixa usada: [220, 265, 292, 291]
+## 5. Da caixa ao ponto 3D
+Tipo de entrada: a caixa em pixels e o mapa de profundidade.
+Interpretação: os pixels de dentro da caixa que estão acima da mesa viram um ponto em metros.
+Ponto (x, y, z) em metros: [0.002, -0.004, 0.025]
+Direção em que os dedos fecham (x, y, z): [-0.995, -0.102, 0.0]
+## 6. Planejador
+Tipo de entrada: o ponto 3D e a direção dos dedos.
+Interpretação: ir até o ponto, fechar a garra e levantar.
+Sucesso: True
+Foto com a caixa: /home/gabriel/Documentos/Simulador Garra/videos/teste_banana.png
+Vídeo: /home/gabriel/Documentos/Simulador Garra/videos/teste_banana.mp4

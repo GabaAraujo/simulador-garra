@@ -1,0 +1,10 @@
+# O mplib 0.1.1, que o ManiSkill fixa no Linux, encerra o processo
+# com segfault se o NumPy for 2 ou mais novo.
+numpy>=1.26,<2
+mani_skill==3.0.1
+torch
+pyyaml
+transformers
+accelerate
+bitsandbytes
+pillow

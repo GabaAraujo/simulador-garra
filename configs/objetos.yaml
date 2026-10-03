@@ -1,0 +1,22 @@
+# Nomes que o comando de texto pode usar. As posições são fixas
+# para os três objetos aparecerem juntos, sem um esconder o outro.
+objetos:
+  cubo:
+    tipo: cubo
+    cor: [1.0, 0.0, 0.0, 1.0]
+    xy: [0.05, -0.2]
+    frase: red cube
+    aliases: [cubo vermelho, cubo, cube]
+  banana:
+    tipo: ycb
+    modelo: "011_banana"
+    xy: [0.0, 0.0]
+    frase: banana
+    aliases: [banana]
+  lata:
+    tipo: cilindro
+    cor: [0.1, 0.35, 0.9, 1.0]
+    raio: 0.02
+    meio_comprimento: 0.03
+    xy: [0.05, 0.2]
+    aliases: [lata de sopa, lata, sopa, can]

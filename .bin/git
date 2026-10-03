@@ -1,0 +1,11 @@
+#!/bin/sh
+# O ManiSkill importa o GitPython ao gravar o vídeo. Se existir um git
+# de verdade, este arquivo só o encaminha. Sem ele, responde a versão
+# para o import não derrubar o processo.
+PATH="/usr/local/bin:/usr/bin:/bin:${HOME}/.local/bin"
+real=$(command -v git 2>/dev/null || true)
+if [ -n "$real" ] && [ "$real" != "$0" ]; then
+  exec "$real" "$@"
+fi
+echo "git version 2.40.0"
+exit 0
